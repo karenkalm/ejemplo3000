@@ -1,0 +1,37 @@
+﻿@inherits LayoutComponentBase
+
+<div class="app-layout">
+    <!-- Top Menu global -->
+    <header class="topmenu">
+        <button class="menu-toggle" @onclick="ToggleSidebar">☰</button>
+        <span class="title">Mi Aplicación</span>
+    </header>
+
+    <div class="layout-body">
+        <!-- Sidebar -->
+        <nav class="sidebar @(sidebarOpen ? "open" : "closed")">
+            <ul>
+                <li><NavLink href="/">🏠 Inicio</NavLink></li>
+                <li><NavLink href="/productos">Tipo Perfil</NavLink></li>
+                <li><NavLink href="/clientes">Tarjeta</NavLink></li>
+                <li><NavLink href="/reportes">Top Menu</NavLink></li>
+                <li><NavLink href="/clientesresumen">Tabla</NavLink></li>
+                <li><NavLink href="/graficaclientes">Grafica</NavLink></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            @Body
+        </main>
+    </div>
+</div>
+
+@code {
+    private bool sidebarOpen = true;
+
+    private void ToggleSidebar()
+    {
+        sidebarOpen = !sidebarOpen;
+    }
+}

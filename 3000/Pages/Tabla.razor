@@ -1,0 +1,58 @@
+﻿@page "/clientesresumen"
+
+<h2>Resumen de Clientes</h2>
+
+<!-- Sección de tarjetas (1 fila con 2 columnas) -->
+<div class="cards-row">
+    <div class="card">
+        <h3>Clientes Totales</h3>
+        <p>@clientes.Count</p>
+    </div>
+    <div class="card">
+        <h3>Activos</h3>
+        <p>@clientes.Count(c => c.Activo)</p>
+    </div>
+</div>
+
+<!-- Sección de tabla -->
+<div class="table-section">
+    <h3>📋 Lista de Clientes</h3>
+    <table class="clientes-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in clientes)
+            {
+                <tr>
+                    <td>@cliente.Nombre</td>
+                    <td>@cliente.Email</td>
+                    <td>@cliente.Telefono</td>
+                    <td>@(cliente.Activo ? "✔️" : "❌")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    public class Cliente
+    {
+        public string Nombre { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Telefono { get; set; } = "";
+        public bool Activo { get; set; }
+    }
+
+    private List<Cliente> clientes = new()
+    {
+        new Cliente { Nombre = "Juan Pérez", Email = "juan@example.com", Telefono="555-111-222", Activo=true },
+        new Cliente { Nombre = "María López", Email = "maria@example.com", Telefono="555-333-444", Activo=false },
+        new Cliente { Nombre = "Carlos Díaz", Email = "carlos@example.com", Telefono="555-555-666", Activo=true },
+    };
+}

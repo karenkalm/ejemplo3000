@@ -1,0 +1,116 @@
+﻿@page "/clientes"
+
+<h2>Clientes</h2>
+
+<div class="clientes-container">
+    @foreach (var cliente in clientes)
+    {
+        <div class="cv-card">
+            <div class="cv-left">
+                <img src="@cliente.FotoUrl" alt="Foto de @cliente.Nombre" />
+            </div>
+
+            <div class="cv-right">
+                <h3>@cliente.Nombre</h3>
+                <p class="prof">@cliente.Profesion</p>
+
+                <h4>📌 Experiencia</h4>
+                <ul>
+                    @foreach (var exp in cliente.Experiencia)
+                    {
+                        <li>@exp</li>
+                    }
+                </ul>
+
+                <h4>🎓 Educación</h4>
+                <ul>
+                    @foreach (var edu in cliente.Educacion)
+                    {
+                        <li>@edu</li>
+                    }
+                </ul>
+
+                <h4>📞 Contacto</h4>
+                <p>Email: <a href="mailto:@cliente.Email">@cliente.Email</a></p>
+                <p>Tel: @cliente.Telefono</p>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    public class Cliente
+    {
+        public string Nombre { get; set; } = "";
+        public string Profesion { get; set; } = "";
+        public string FotoUrl { get; set; } = "";
+        public List<string> Experiencia { get; set; } = new();
+        public List<string> Educacion { get; set; } = new();
+        public string Email { get; set; } = "";
+        public string Telefono { get; set; } = "";
+    }
+
+    private List<Cliente> clientes = new()
+    {
+        new Cliente {
+            Nombre = "Juan Pérez",
+            Profesion = "Ingeniero de Software",
+            FotoUrl = "https://via.placeholder.com/120",
+            Experiencia = new() {
+                "Desarrollador en Empresa X (2018-2021)",
+                "Líder de proyectos en Empresa Y (2021-2023)"
+            },
+            Educacion = new() {
+                "Ingeniería en Sistemas - UNAM",
+                "Diplomado en Ciberseguridad"
+            },
+            Email = "juan.perez@example.com",
+            Telefono = "+52 555 123 4567"
+        },
+        new Cliente {
+            Nombre = "María López",
+            Profesion = "Diseñadora UX/UI",
+            FotoUrl = "https://via.placeholder.com/120",
+            Experiencia = new() {
+                "Diseñadora en Agencia Creativa (2017-2020)",
+                "Freelancer UX/UI (2020-actualidad)"
+            },
+            Educacion = new() {
+                "Lic. Diseño Gráfico - UDG",
+                "Certificación UX - Google"
+            },
+            Email = "maria.lopez@example.com",
+            Telefono = "+52 555 987 6543"
+        },
+        new Cliente {
+            Nombre = "Carlos Gómez",
+            Profesion = "Administrador de Proyectos",
+            FotoUrl = "https://via.placeholder.com/120",
+            Experiencia = new() {
+                "PM en Construcciones Delta (2016-2020)",
+                "Gerente de Proyectos en TechCorp (2020-2023)"
+            },
+            Educacion = new() {
+                "Lic. Administración - ITESM",
+                "Certificación PMP"
+            },
+            Email = "carlos.gomez@example.com",
+            Telefono = "+52 555 111 2222"
+        },
+        new Cliente {
+            Nombre = "Ana Torres",
+            Profesion = "Contadora Pública",
+            FotoUrl = "https://via.placeholder.com/120",
+            Experiencia = new() {
+                "Contadora en Despacho Fiscal MX (2015-2019)",
+                "Supervisora Contable en Grupo Alfa (2019-2023)"
+            },
+            Educacion = new() {
+                "Lic. Contaduría - UNAM",
+                "Diplomado en Finanzas"
+            },
+            Email = "ana.torres@example.com",
+            Telefono = "+52 555 333 4444"
+        }
+    };
+}
